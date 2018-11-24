@@ -17,17 +17,12 @@ class Pirata
   end
 
   def resultarHerido
-  end
-end
-
-module Luchador
-  def resultarHerido
     @poderDePelea /= 2
   end
 end
 
+
 class Guerrero < Pirata
-  include Luchador
   @poderDePelea
   @vitalidad
 
@@ -43,7 +38,6 @@ class Guerrero < Pirata
 end
 
 class MonstruoHumanoide < Pirata
-  include Luchador
   @poderDePelea
 
   def initialize(unaEnergia, unPoderDePelea)
@@ -104,7 +98,6 @@ end
 
 jackSparrow = Pirata.new(500)
 class << jackSparrow
-  include Luchador
   def agregarCaracteristicas
     @poderDePelea = 200
     @inteligencia = 300
