@@ -1,4 +1,4 @@
-require "bandos.rb"
+source "bandos.rb"
 source "pirata.rb"
 
 class Barco
@@ -24,7 +24,7 @@ class Barco
 end
 
   def fuerza
-    return @tripulacion.inject(0) {|totalDeFuerza, unTripulante| totalDeFuerza + unTripulante.poderDeMando}
+    return @tripulacion.sum { |unTripulante| unTripulante.poderDeMando}
   end
 
   def salirPerdedor(barcoVencedor)
@@ -34,11 +34,11 @@ end
   end
 
   def herirTripulacion
-    @tripulacion.collect! {|unTripulante| unTripulante.resultarHerido}
+    @tripulacion.each {|unTripulante| unTripulante.resultarHerido}
   end
 
   def tripulacionFuerte
-    return @tripulacion.select {|unTripulante| unTripulante.esFuerte}
+    @tripulacion.select {|unTripulante| unTripulante.esFuerte}
   end
 
   def recibirTripulacionFuerte(tripulantes)
@@ -53,11 +53,12 @@ end
   end
 
   def dispararCanionazos(cantidad, barcoAtacado)
-    if municiones < cantidad
+    if @municiones < cantidad
       raise "Error: cantidad de municiones menor a la cantidad que se quiere disparar."
     else
-      municiones -= cantidad
+      @municiones -= cantidad
       barcoAtacado.recibirCanionazos(cantidad)
+    end
   end
 
   def recibirCanionazos(cantidad)
@@ -79,5 +80,10 @@ end
 
   def recibirBonusDeArmadaDelHolandesErrante
     @tripulacion.concat(@tripulacion)
+  end
+
+  def cambiarBando(nuevoBando)
+    @bando = nuevoBando
+    self.bonus
   end
 end

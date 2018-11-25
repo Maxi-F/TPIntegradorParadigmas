@@ -11,7 +11,7 @@ class Pirata
   end
 
   def esFuerte
-    return self.poderDeMando > 100
+    self.poderDeMando > 100
   end
 
   def resultarHerido
