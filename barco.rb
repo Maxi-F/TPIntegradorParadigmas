@@ -23,7 +23,7 @@ class Barco
     else
       barco.salirPerdedor(self)
     end
-end
+  end
 
   def fuerza
     @tripulacion.sum { |unTripulante| unTripulante.poderDeMando}
@@ -31,38 +31,42 @@ end
 
   def salirPerdedor(barcoVencedor)
     self.herirTripulacion
-    barcoVencedor.recibirTripulacionFuerte(self.tripulacionFuerte)
-    self.quedarDesolado
-    @tripulacion.clear
+    barcoVencedor.recibirTripulacionFuerte!(self.tripulacionFuerte)
+    self.perderTripulacion!
+    self.quedarDesolado!
   end
 
   def herirTripulacion
-    @tripulacion.each {|unTripulante| unTripulante.resultarHerido}
+    @tripulacion.each {|unTripulante| unTripulante.resultarHerido!} 
   end
 
   def tripulacionFuerte
     @tripulacion.select {|unTripulante| unTripulante.esFuerte?}
   end
 
-  def recibirTripulacionFuerte(tripulantes)
+  def recibirTripulacionFuerte!(tripulantes)
     @tripulacion.concat(tripulantes)
   end
 
-  def quedarDesolado
+  def perderTripulacion!
+    @tripulacion.clear
+  end
+
+  def quedarDesolado!
     @resistencia = 0
     @poderDeFuego = 0
     @municiones = 0
   end
 
-  def dispararCanionazos(cantidad, barcoAtacado)
+  def dispararCanionazos!(cantidad, barcoAtacado)
     if @municiones < cantidad
       raise "Error: cantidad de municiones menor a la cantidad que se quiere disparar."
     end
       @municiones -= cantidad
-      barcoAtacado.recibirCanionazos(cantidad)
+      barcoAtacado.recibirCanionazos!(cantidad)
   end
 
-  def recibirCanionazos(cantidad)
+  def recibirCanionazos!(cantidad)
     @resistencia -= 50*cantidad
     @tripulacion.select {|unTripulante| !(unTripulante.estaCansado?)}
   end
@@ -71,19 +75,19 @@ end
     @bando.bonus(self)
   end
 
-  def recibirBonusDeArmadaInglesa
+  def recibirBonusDeArmadaInglesa!
     @municiones += @municiones*0.3
   end
 
-  def recibirBonusDeUnionPirata
+  def recibirBonusDeUnionPirata!
     @poderDeFuego += 60
   end
 
-  def recibirBonusDeArmadaDelHolandesErrante
+  def recibirBonusDeArmadaDelHolandesErrante!
     @tripulacion.concat(@tripulacion)
   end
 
-  def cambiarBando(nuevoBando)
+  def cambiarBando!(nuevoBando)
     @bando = nuevoBando
     self.bonus
   end

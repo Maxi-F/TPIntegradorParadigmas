@@ -1,11 +1,13 @@
 require "./barco.rb"
-require "test/unit" #Modulo para testing de Ruby (existen otros pero use este)
+require "test/unit" #Modulo para testing de Ruby (existen otros)
 
 
-class TesteoGeneral < Test::Unit::TestCase # Esta clase de la que hereda señala que es una clase para testear, incluye los metodos de assert. Es similar a un "Describe"
+class TesteoGeneral < Test::Unit::TestCase
+# Esta clase de la que hereda señala que es una clase para testear, incluye los metodos de assert.
+# Es similar a un "Describe"
 
   def setup # Similar al fixture, es codigo que se va a correr antes de todo.
-    @jackSparrow = JackSparrow.instance # Para no estar nombrando los .instance en todos lados
+    @jackSparrow = JackSparrow.instance
     @unionPirata = UnionPirata.instance
     @armadaInglesa = ArmadaInglesa.instance
     @guerreroComun = Guerrero.new(200, 200, 200)
@@ -17,9 +19,9 @@ class TesteoGeneral < Test::Unit::TestCase # Esta clase de la que hereda señala
   end
 
   def test_JackTomaRonConElNavegador
-    @jackSparrow.tomarRonCon(@navegadorComun)
-    assert_equal(600, @jackSparrow.energia) # metodo de assert_equal, similar a assert.equal(). Diferencia: assert es un objeto en wollok, aca es un metodo.
-    assert_equal(250, @navegadorComun.energia)
+    @jackSparrow.tomarRonCon!(@navegadorComun)
+    assert_equal(600, @jackSparrow.energia)       # assert_equal, similar a assert.equals().
+    assert_equal(250, @navegadorComun.energia)    # En Wollok assert es un objeto, aca es un metodo.
   end
 
   def test_SeEnfrentanElminiBarcoYLosSuperPiratas

@@ -2,6 +2,7 @@ require "Singleton"
 
 class Pirata
   attr_reader :energia # accessor para el Testeo
+
   def initialize(unaEnergia)
     @energia = unaEnergia
   end
@@ -9,7 +10,7 @@ class Pirata
   def poderDeMando
   end
 
-  def tomarRonCon(pirata)
+  def tomarRonCon!(pirata)
     @energia -= 50
   end
 
@@ -17,7 +18,7 @@ class Pirata
     self.poderDeMando > 100
   end
 
-  def resultarHerido
+  def resultarHerido!
     @poderDePelea /= 2
   end
 
@@ -60,7 +61,7 @@ class Navegador < Pirata
     @inteligencia**2
   end
 
-  def resultarHerido
+  def resultarHerido!
     @inteligencia /= 2
   end
 end
@@ -76,7 +77,7 @@ class Cocinero < Pirata
     @moral*@ingredientes.length
   end
 
-  def tomarRonCon(pirata)
+  def tomarRonCon!(pirata)
     super(pirata)
     self.perderIngrediente(@ingredientes.sample, pirata)
   end
@@ -86,7 +87,7 @@ class Cocinero < Pirata
     @ingredientes.delete(unIngrediente)
   end
 
-  def resultarHerido
+  def resultarHerido!
     @moral /= 2
   end
 end
@@ -105,9 +106,9 @@ class JackSparrow < Pirata
     @energia*@inteligencia*@poderDePelea
   end
 
-  def tomarRonCon(pirata)
+  def tomarRonCon!(pirata)
     @energia += 100
-    pirata.tomarRonCon(self)
+    pirata.tomarRonCon!(self)
   end
 
   def recibirIngrediente(unIngrediente)
