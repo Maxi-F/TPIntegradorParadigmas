@@ -1,6 +1,4 @@
 class Pirata
-  @energia
-
   def initialize(unaEnergia)
     @energia = unaEnergia
   end
@@ -23,9 +21,6 @@ end
 
 
 class Guerrero < Pirata
-  @poderDePelea
-  @vitalidad
-
   def initialize(unaEnergia, unPoderDePelea, unaVitalidad)
     super(unaEnergia)
     @poderDePelea = unPoderDePelea
@@ -51,8 +46,6 @@ class MonstruoHumanoide < Pirata
 end
 
 class Navegador < Pirata
-  @inteligencia
-
   def initialize(unaEnergia, unaInteligencia)
     super(unaEnergia)
     @inteligencia = unaInteligencia
@@ -68,9 +61,6 @@ class Navegador < Pirata
 end
 
 class Cocinero < Pirata
-  @moral
-  @ingredientes
-
   def initialize(unaEnergia, unaMoral, unosIngredientes)
     super(unaEnergia)
     @moral = unaMoral
