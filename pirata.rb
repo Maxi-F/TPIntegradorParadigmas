@@ -1,4 +1,7 @@
+require "Singleton"
+
 class Pirata
+  attr_reader :energia # accessor para el Testeo
   def initialize(unaEnergia)
     @energia = unaEnergia
   end
@@ -37,8 +40,6 @@ class Guerrero < Pirata
 end
 
 class MonstruoHumanoide < Pirata
-  @poderDePelea
-
   def initialize(unaEnergia, unPoderDePelea)
     super(unaEnergia)
     @poderDePelea = unPoderDePelea
@@ -90,9 +91,11 @@ class Cocinero < Pirata
   end
 end
 
-jackSparrow = Pirata.new(500)
-class << jackSparrow
-  def agregarCaracteristicas
+class JackSparrow < Pirata
+  include Singleton
+
+  def initialize
+    super(500)
     @poderDePelea = 200
     @inteligencia = 300
     @ingredientes = ["botellaDeRon"]
@@ -111,4 +114,3 @@ class << jackSparrow
     @ingredientes.push(unIngrediente)
   end
 end
-jackSparrow.agregarCaracteristicas

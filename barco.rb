@@ -1,7 +1,9 @@
-source "bandos.rb"
-source "pirata.rb"
+require "./bandos.rb"
+require "./pirata.rb"
 
 class Barco
+  attr_reader :resistencia, :poderDeFuego, :municiones # accessors para los testeos
+
   def initialize(unaResistencia, unPoderDeFuego, unasMuniciones, unaTripulacion, unBando)
     @resistencia = unaResistencia
     @poderDeFuego = unPoderDeFuego
@@ -62,7 +64,7 @@ end
 
   def recibirCanionazos(cantidad)
     @resistencia -= 50*cantidad
-    @tripulacion.select {|unTripulante| !(unTripulante.estaCansado??)}
+    @tripulacion.select {|unTripulante| !(unTripulante.estaCansado?)}
   end
 
   def bonus

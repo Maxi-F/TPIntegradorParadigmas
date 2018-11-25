@@ -1,24 +1,21 @@
-class Bando
-  def bonus(barco)
-  end
-end
+require "Singleton"
 
-armadaInglesa = Bando.new
-class << armadaInglesa
+class ArmadaInglesa
+  include Singleton
   def bonus(barco)
     barco.recibirBonusDeArmadaInglesa
   end
 end
 
-unionPirata = Bando.new
-class << unionPirata
+class UnionPirata
+  include Singleton
   def bonus(barco)
     barco.recibirBonusDeUnionPirata
   end
 end
 
-armadaDelHolandesErrante = Bando.new
-class << armadaDelHolandesErrante
+class ArmadaDelHolandesErrante
+  include Singleton
   def bonus(barco)
     barco.recibirBonusDeArmadaDelHolandesErrante
   end
