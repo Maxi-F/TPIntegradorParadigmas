@@ -17,6 +17,10 @@ class Pirata
   def resultarHerido
     @poderDePelea /= 2
   end
+
+  def estaCansado
+    @energia < 20
+  end
 end
 
 
