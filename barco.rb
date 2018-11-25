@@ -39,7 +39,7 @@ end
   end
 
   def tripulacionFuerte
-    @tripulacion.select {|unTripulante| unTripulante.esFuerte}
+    @tripulacion.select {|unTripulante| unTripulante.esFuerte?}
   end
 
   def recibirTripulacionFuerte(tripulantes)
@@ -62,7 +62,7 @@ end
 
   def recibirCanionazos(cantidad)
     @resistencia -= 50*cantidad
-    @tripulacion.select {|unTripulante| !(unTripulante.estaCansado)}
+    @tripulacion.select {|unTripulante| !(unTripulante.estaCansado??)}
   end
 
   def bonus

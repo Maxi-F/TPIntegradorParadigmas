@@ -10,7 +10,7 @@ class Pirata
     @energia -= 50
   end
 
-  def esFuerte
+  def esFuerte?
     self.poderDeMando > 100
   end
 
@@ -18,7 +18,7 @@ class Pirata
     @poderDePelea /= 2
   end
 
-  def estaCansado
+  def estaCansado?
     @energia < 20
   end
 end
@@ -32,7 +32,7 @@ class Guerrero < Pirata
   end
 
   def poderDeMando
-    return @poderDePelea * @vitalidad
+    @poderDePelea * @vitalidad
   end
 end
 
@@ -45,7 +45,7 @@ class MonstruoHumanoide < Pirata
   end
 
   def poderDeMando
-    return @poderDePelea
+    @poderDePelea
   end
 end
 
@@ -56,7 +56,7 @@ class Navegador < Pirata
   end
 
   def poderDeMando
-    return @inteligencia**2
+    @inteligencia**2
   end
 
   def resultarHerido
@@ -72,7 +72,7 @@ class Cocinero < Pirata
   end
 
   def poderDeMando
-    return @moral*@ingredientes.length
+    @moral*@ingredientes.length
   end
 
   def tomarRonCon(pirata)
