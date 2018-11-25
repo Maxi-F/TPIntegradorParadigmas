@@ -12,7 +12,7 @@ class Barco
   end
 
   def capitan
-    return @tripulacion.max {|unTripulante, otroTripulante| unTripulante.poderDeMando <=> otroTripulante.poderDeMando}
+    @tripulacion.max {|unTripulante, otroTripulante| unTripulante.poderDeMando <=> otroTripulante.poderDeMando}
   end
 
   def enfrentar(barco)
@@ -24,13 +24,14 @@ class Barco
 end
 
   def fuerza
-    return @tripulacion.sum { |unTripulante| unTripulante.poderDeMando}
+    @tripulacion.sum { |unTripulante| unTripulante.poderDeMando}
   end
 
   def salirPerdedor(barcoVencedor)
     self.herirTripulacion
     barcoVencedor.recibirTripulacionFuerte(self.tripulacionFuerte)
     self.quedarDesolado
+    @tripulacion.clear
   end
 
   def herirTripulacion
@@ -46,7 +47,6 @@ end
   end
 
   def quedarDesolado
-    @tripulacion.clear
     @resistencia = 0
     @poderDeFuego = 0
     @municiones = 0
@@ -55,10 +55,9 @@ end
   def dispararCanionazos(cantidad, barcoAtacado)
     if @municiones < cantidad
       raise "Error: cantidad de municiones menor a la cantidad que se quiere disparar."
-    else
+    end
       @municiones -= cantidad
       barcoAtacado.recibirCanionazos(cantidad)
-    end
   end
 
   def recibirCanionazos(cantidad)
