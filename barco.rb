@@ -2,7 +2,7 @@ require "./bandos.rb"
 require "./pirata.rb"
 
 class Barco
-  attr_reader :resistencia, :poderDeFuego, :municiones # accessors para los testeos
+  attr_reader :resistencia, :poderDeFuego, :municiones 
 
   def initialize(unaResistencia, unPoderDeFuego, unasMuniciones, unaTripulacion, unBando)
     @resistencia = unaResistencia
@@ -37,7 +37,7 @@ class Barco
   end
 
   def herirTripulacion
-    @tripulacion.each {|unTripulante| unTripulante.resultarHerido!} 
+    @tripulacion.each {|unTripulante| unTripulante.resultarHerido!}
   end
 
   def tripulacionFuerte

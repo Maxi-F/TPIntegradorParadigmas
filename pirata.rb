@@ -1,7 +1,7 @@
 require "Singleton"
 
 class Pirata
-  attr_reader :energia # accessor para el Testeo
+  attr_reader :energia 
 
   def initialize(unaEnergia)
     @energia = unaEnergia
